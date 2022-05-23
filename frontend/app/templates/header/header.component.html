@@ -1,0 +1,20 @@
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-3 text-white text-decoration-none">
+                <span class="fs-3 text-warning">TestWeb</span>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a routerLink="/dashboard" routerLinkActive="text-secondary" class="nav-link px-2">Главная</a></li>
+                <li><a routerLink="/ticket" routerLinkActive="text-secondary" class="nav-link px-2">Обращения</a></li>
+                <li><a routerLink="/profile" routerLinkActive="text-secondary" class="nav-link px-2">Профиль</a></li>
+            </ul>
+
+            <div class="text-end">
+                <span class="d-inline-block text-white me-3">{{ login }}</span>
+                <button type="button" class="btn btn-warning" (click)="authService.SignOut()">Выйти</button>
+            </div>
+        </div>
+    </div>
+</header>

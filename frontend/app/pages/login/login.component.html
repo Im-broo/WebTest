@@ -1,0 +1,96 @@
+<main class="container-fluid container-md">
+    <div class="row justify-content-sm-center h-100">
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+            <div class="text-center my-5">
+                <span class="fs-1 fw-bold text-warning">TestWeb</span>
+            </div>
+            <div class="card shadow-lg">
+                <div class="card-body px-5 pt-5 pb-3">
+                    <h1 class="fs-4 card-title fw-bold mb-4">Авторизация</h1>
+                    <form
+                        #authForm="ngForm"
+                        class="needs-validation"
+                        autocomplete="off"
+                        (submit)="authorizeUser($event, email.invalid || password.invalid)"
+                    >
+                        <div class="mb-3">
+                            <label class="mb-2 text-muted" for="email">Email</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="Введите email..."
+                                [(ngModel)]="user.email" #email="ngModel"
+                                required
+                                email
+                                autofocus
+                            />
+                            <div
+                                *ngIf="email.invalid && (email.dirty || authForm.submitted)"
+                                class="invalid-feedback d-block text-end"
+                            >
+                                <div *ngIf="email.errors?.['required']">
+                                    Поле обязательно для заполнения.
+                                </div>
+                                <div *ngIf="email.errors?.['email']">
+                                    Поле должно быть валидным email адресом.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2 text-muted" for="password">Пароль</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="Введите пароль..."
+                                [(ngModel)]="user.password" #password="ngModel"
+                                required
+                                minlength="4"
+                                required
+                            />
+                            <div
+                                *ngIf="password.invalid && (password.dirty || authForm.submitted)"
+                                class="invalid-feedback d-block text-end"
+                            >
+                                <div *ngIf="password.errors?.['required']">
+                                    Поле обязательно для заполнения.
+                                </div>
+                                <div *ngIf="password.errors?.['minlength']">
+                                    Поле не может быть меньше 4 символов.
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <a class="text-muted" routerLink="/forgot-password">Забыли пароль?</a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-4">
+                            <a
+                                href="#"
+                                class="text-dark"
+                                (click)="$event.preventDefault(); authService.GoogleAuth()"
+                            >Войти с учетной записью Google</a>
+                        </div>
+                        <div class="d-flex">
+                            <button
+                                type="submit"
+                                class="btn btn-warning ms-auto"
+                                [disabled]="processing"
+                            >Авторизация</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer py-3 border-0">
+                    <div class="text-center">
+                        Нет аккаунта? <a class="text-dark" routerLink="/registration">Зарегистрируйтесь</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center my-3 text-muted">
+                Copyright © 2022 — TestWeb
+            </div>
+        </div>
+    </div>
+</main>

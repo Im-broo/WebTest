@@ -1,0 +1,31 @@
+<main class="container-fluid container-md">
+    <div class="row justify-content-sm-center h-100">
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+            <div class="text-center my-5">
+                <span class="fs-1 fw-bold text-warning">TestWeb</span>
+            </div>
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h1 class="fs-4 card-title fw-bold text-center mb-4">Спасибо за регистрацию!</h1>
+                    <div class="form-group" *ngIf="authService.authData as user">
+                        <p class="text-center">Письмо с подтверждением отправлено на <strong>{{ user.email }}</strong>.</p>
+                        <p class="text-center">Пожалуйста проверьте свою почту и перейдите по ссылке для подтверждения регистрации.</p>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-warning" (click)="resendEmail()">
+                            <i class="fas fa-redo-alt"></i> Отправить письмо еще раз
+                        </button>
+                    </div>
+                </div>
+                <div class="card-footer py-3 border-0">
+                    <div class="text-center">
+                        Вернуться к <a class="text-dark" routerLink="/login">авторизации</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center my-3 text-muted">
+                Copyright © 2022 — TestWeb
+            </div>
+        </div>
+    </div>
+</main>

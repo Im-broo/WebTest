@@ -1,0 +1,74 @@
+<app-header></app-header>
+<main class="container-fluid container-md">
+    <h1 class="my-3">Профиль</h1>
+    <form
+        class="col-8"
+        autocomplete="off"
+        (submit)="updateUserData()"
+    >
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="email">Email</label>
+            <input
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Введите логин..."
+                [(ngModel)]="userForm.email" #email="ngModel"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="first-name">Имя</label>
+            <input
+                type="text"
+                class="form-control"
+                id="first-name"
+                name="first-name"
+                placeholder="Введите имя..."
+                [(ngModel)]="userForm.firstName" #firstName="ngModel"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="last-name">Фамилия</label>
+            <input
+                type="text"
+                class="form-control"
+                id="last-name"
+                name="last-name"
+                placeholder="Введите фамилию..."
+                [(ngModel)]="userForm.lastName" #lastName="ngModel"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="birth-date">Дата рождения</label>
+            <input
+                type="date"
+                class="form-control"
+                id="birth-date"
+                name="birth-date"
+                placeholder="Введите дату рождения..."
+                [(ngModel)]="userForm.birthDate" #birthDate="ngModel"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="city-id">Город рождения</label>
+            <select
+                class="form-control"
+                name="city-id"
+                id="city-id"
+                placeholder="Выберите город..."
+                [(ngModel)]="userForm.cityId" #cityId="ngModel"
+            >
+                <option disabled value="0">Выберите город</option>
+                <option *ngFor="let city of cities | async" [value]="city.id">{{ city.title }}</option>
+            </select>
+        </div>
+        <div class="d-flex">
+            <button
+                type="submit"
+                class="btn btn-warning ms-auto"
+                [disabled]="processing"
+            >Сохранить</button>
+        </div>
+    </form>
+</main>

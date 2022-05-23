@@ -1,0 +1,24 @@
+<app-header></app-header>
+<main class="container-fluid container-md">
+    <h1 class="my-3">Главная</h1>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">UID</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Email</th>
+                <th scope="col">Дата рождения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users | async">
+                <th scope="row">{{ user.uid }}</th>
+                <td>{{ user.firstName || user.displayName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.birthDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>

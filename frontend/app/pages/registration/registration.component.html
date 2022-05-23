@@ -1,0 +1,84 @@
+<main class="container-fluid container-md">
+    <div class="row justify-content-sm-center h-100">
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+            <div class="text-center my-5">
+                <span class="fs-1 fw-bold text-warning">TestWeb</span>
+            </div>
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h1 class="fs-4 card-title fw-bold mb-4">Регистрация</h1>
+                    <form
+                        #regForm="ngForm"
+                        class="needs-validation"
+                        autocomplete="off"
+                        (submit)="registerUser($event, email.invalid || password.invalid)"
+                    >
+                        <div class="mb-3">
+                            <label class="mb-2 text-muted" for="email">E-mail</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="Email"
+                                [(ngModel)]="user.email" #email="ngModel"
+                                required
+                                email
+                            />
+                            <div
+                                *ngIf="email.invalid && (email.dirty || regForm.submitted)"
+                                class="invalid-feedback d-block text-end"
+                            >
+                                <div *ngIf="email.errors?.['required']">
+                                    Поле обязательно для заполнения.
+                                </div>
+                                <div *ngIf="email.errors?.['email']">
+                                    Поле должно быть валидным email адресом.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2 text-muted" for="password">Пароль</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="Введите пароль..."
+                                [(ngModel)]="user.password" #password="ngModel"
+                                required
+                                minlength="4"
+                            />
+                            <div
+                                *ngIf="password.invalid && (password.dirty || regForm.submitted)"
+                                class="invalid-feedback d-block text-end"
+                            >
+                                <div *ngIf="password.errors?.['required']">
+                                    Поле обязательно для заполнения.
+                                </div>
+                                <div *ngIf="password.errors?.['minlength']">
+                                    Поле не может быть меньше 4 символов.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button
+                                type="submit"
+                                class="btn btn-warning ms-auto"
+                                [disabled]="processing"
+                            >Регистрация</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer py-3 border-0">
+                    <div class="text-center">
+                        <a href="#" class="text-dark" (click)="$event.preventDefault(); authService.GoogleAuth()">Продолжить с Google</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center my-3 text-muted">
+                Copyright © 2022 — TestWeb
+            </div>
+        </div>
+    </div>
+</main>

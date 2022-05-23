@@ -1,0 +1,67 @@
+<app-header></app-header>
+<main class="container-fluid container-md">
+    <h1 class="my-3">Обращения</h1>
+    <button
+        type="button"
+        class="btn btn-warning mb-3"
+        (click)="addMode = true"
+        *ngIf="addMode == false"
+    >Добавить обращение</button>
+    <form
+        class="col-8"
+        autocomplete="off"
+        *ngIf="addMode; else ticketsList"
+        (submit)="addTicket()"
+    >
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="title">Тема</label>
+            <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                placeholder="Введите логин..."
+                [(ngModel)]="ticketForm.title" #title="ngModel"
+            />
+        </div>
+        <div class="mb-3">
+            <label class="mb-2 text-muted" for="description">Описание</label>
+            <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                placeholder="Введите логин..."
+                [(ngModel)]="ticketForm.description" #description="ngModel"
+            ></textarea>
+        </div>
+        <div class="d-flex">
+            <button
+                type="submit"
+                class="btn btn-warning ms-auto"
+                [disabled]="processing"
+            >Создать</button>
+        </div>
+    </form>
+    <ng-template #ticketsList>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Id</th>
+                    <th scope="col">Тема</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col" class="text-center">Удаление</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ticket of tickets | async">
+                    <th scope="row">{{ ticket.id }}</th>
+                    <td>{{ ticket.title }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td class="d-flex justify-content-center">
+                        <span class="delete-icon" (click)="deleteTicket(ticket.id)"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
+</main>
